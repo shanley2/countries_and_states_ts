@@ -1,12 +1,23 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Dispatch, SetStateAction} from 'react';
 import './components.css';
-const Countries = (props: any) => {
 
-    const [data, setData] = useState<any[]>();
+type Country = {
+    name: string;
+    id?: number;
+    code: string;
+}
+
+type CountryProps = {
+    setCountry: Dispatch<SetStateAction<string>>;
+}
+
+const Countries = (props: CountryProps) => {
+
+    const [data, setData] = useState<Country[]>();
 
     const sortByName = (a: string, b: string) => {
-        // a = a.toLowerCase();
-        // b = b.toLowerCase();
+        a = a.toLowerCase();
+        b = b.toLowerCase();
 
         if (a < b) {
             return -1;
@@ -29,7 +40,7 @@ const Countries = (props: any) => {
         })
     }
     
-    const handleSelection = (event: any) => {
+    const handleSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
         props.setCountry(event.target.value);
     };
     

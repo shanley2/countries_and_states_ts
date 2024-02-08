@@ -2,14 +2,27 @@ import React, {useState, useEffect} from 'react';
 import './components.css';
 import { StringLiteralType } from 'typescript';
 
-const States = (props: any) => {
+type StatesProps = {
+    country: string;
+    foo?: number;
+}
 
-    const [data, setData] = useState<any[]>();
-    const apiString: string = "https://xc-countries-api.fly.dev/api/countries/" + props.country + "/states/";
+type State = {
+    name: string;
+    id?: number;
+    code: string;
+    countryId: number;
+}
+
+const States = (props: StatesProps) => {
+
+    const {country} = props;
+    const [data, setData] = useState<State[]>();
+    
 
     const sortByName = (a: string, b: string) => {
-        // a = a.toLowerCase();
-        // b = b.toLowerCase();
+        a = a.toLowerCase();
+        b = b.toLowerCase();
 
         if (a < b) {
             return -1;
@@ -20,12 +33,19 @@ const States = (props: any) => {
     };
 
     useEffect(() => {
+        if (country == "default") {
+            setData([]);
+        } else {
+            const apiString: string = `https://xc-countries-api.fly.dev/api/countries/${country}/states/`;
         
-        fetch(apiString)
-          .then(response => response.json())
-          .then(json => setData(json))
-          .catch(error => console.error(error));
-    }, [apiString]);
+            // TODO if statement check if country is default,if it is, don't fetch setData to []
+            fetch(apiString)
+              .then(response => response.json())
+              .then(json => setData(json))
+              .catch(error => console.error(error));
+        }
+
+    }, [country]);
 
     if (data) {
         data.sort((a, b) => {

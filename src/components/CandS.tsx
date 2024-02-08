@@ -6,11 +6,11 @@ import States from './States';
 
 
 const CandS = () => {
-    const [country, setCountry] = useState();
+    const [country, setCountry] = useState("");
 
     return (
         <div className="dropdowns">
-            <Countries country={country} setCountry={setCountry} />
+            <Countries setCountry={setCountry} />
             <States country={country} />
         </div>
     );
