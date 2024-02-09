@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import './components.css';
-import { StringLiteralType } from 'typescript';
 
 type StatesProps = {
     country: string;
@@ -33,7 +32,7 @@ const States = (props: StatesProps) => {
     };
 
     useEffect(() => {
-        if (country == "default") {
+        if (country === "default" || country === "") {
             setData([]);
         } else {
             const apiString: string = `https://xc-countries-api.fly.dev/api/countries/${country}/states/`;
