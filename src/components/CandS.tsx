@@ -10,7 +10,7 @@ const CandS = () => {
 
     return (
         <div className="dropdowns">
-            <Countries setCountry={setCountry} />
+            <Countries setCountry={setCountry} needCode={true} />
             <States country={country} />
         </div>
     );

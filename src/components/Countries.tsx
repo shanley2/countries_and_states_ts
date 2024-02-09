@@ -8,7 +8,9 @@ type Country = {
 }
 
 type CountryProps = {
-    setCountry: Dispatch<SetStateAction<string>>;
+    setCountry?: Dispatch<SetStateAction<string>>;
+    setCountryID?: Dispatch<SetStateAction<string>>;
+    needCode: boolean;
 }
 
 const Countries = (props: CountryProps) => {
@@ -41,7 +43,13 @@ const Countries = (props: CountryProps) => {
     }
     
     const handleSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        props.setCountry(event.target.value);
+        if (props.setCountry) {
+            props.setCountry(event.target.value);
+        }
+        
+        if (props.setCountryID) {
+            props.setCountryID(event.target.value);
+        }
     };
     
     return (
@@ -50,7 +58,7 @@ const Countries = (props: CountryProps) => {
                 <select className="dropdown" id="countrySelect" onChange={handleSelection}>
                     <option value="default">Choose Country</option>
                     {data ? data.map(d  => (
-                        <option value={d.code} key={d.code}>{d.name}</option>
+                        <option value={props.needCode? d.code: d.id} key={d.id}>{d.name}</option>
                     )): <option>No data found</option>}
                 </select>
             </label>
