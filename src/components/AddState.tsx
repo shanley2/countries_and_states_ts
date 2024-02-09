@@ -29,6 +29,8 @@ const AddState = () => {
                 console.log(error);
             });
         }
+        setState("");
+        setCode("");
     };
 
     return (
@@ -39,10 +41,10 @@ const AddState = () => {
                     <Countries setCountryID={setCountryID} needCode={false}/>
                 
                     <label className="state-label">State Name
-                        <input type="text" id="stateName" className="input-box" onChange={event => setState(event.target.value)}/>
+                        <input value={newState} type="text" id="stateName" className="input-box" onChange={event => setState(event.target.value)}/>
                     </label>
                     <label className="state-label">State Code
-                        <input type="text" id="stateCode" className="input-box" onChange={event => setCode(event.target.value)}/>
+                        <input value={newCode} type="text" id="stateCode" className="input-box" onChange={event => setCode(event.target.value)}/>
                     </label>
                 </div>
                 <div className="input-submit">
