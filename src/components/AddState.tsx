@@ -13,7 +13,8 @@ const AddState = () => {
         if ((id === "" ||  newCode === "") || newState ==="") {
             alert("Both fields must be populated to add a country");
         } else {
-            fetch("https://xc-countries-api.fly.dev/api/states/", {
+            //fetch("https://xc-countries-api.fly.dev/api/states/", {
+            fetch("http://localhost:8000/api/states/", {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -22,7 +23,7 @@ const AddState = () => {
                 body: JSON.stringify({
                     code: newCode,
                     name: newState,
-                    countryID: id,
+                    country_id: id,
                 }),
 
             }).catch(error => {
@@ -35,7 +36,7 @@ const AddState = () => {
 
     return (
         <div className="State">
-            <h1>Add State Page</h1>
+            <h1>Add New State</h1>
             <div className="State-form">
                 <div className="inputs">
                     <Countries setCountryID={setCountryID} needCode={false}/>

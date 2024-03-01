@@ -10,7 +10,8 @@ const AddCountry = () => {
         if (newCountry === "" ||  newCode === "") {
             alert("Both fields must be populated to add a country");
         } else {
-            fetch("https://xc-countries-api.fly.dev/api/countries/", {
+            //fetch("https://xc-countries-api.fly.dev/api/countries/", {
+            fetch("http://localhost:8000/api/countries/", {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',

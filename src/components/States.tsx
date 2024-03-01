@@ -3,7 +3,6 @@ import './components.css';
 
 type StatesProps = {
     country: string;
-    foo?: number;
 }
 
 type State = {
@@ -35,7 +34,8 @@ const States = (props: StatesProps) => {
         if (country === "default" || country === "") {
             setData([]);
         } else {
-            const apiString: string = `https://xc-countries-api.fly.dev/api/countries/${country}/states/`;
+            //const apiString: string = `https://xc-countries-api.fly.dev/api/countries/${country}/states/`;
+            const apiString: string = `http://localhost:8000/api/countries/${country}/states`;
         
             // TODO if statement check if country is default,if it is, don't fetch setData to []
             fetch(apiString)
